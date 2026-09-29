@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Socle applicatif -->
+    <include file="changelog/v1.0.0.xml" relativeToChangelogFile="false"/>
+
+    <!-- Frais de livraison par zone -->
+    <include file="changelog/v2.0.0.xml" relativeToChangelogFile="false"/>
+
+    <!-- Correctif du bareme - a activer seulement pour la variante
+         "on corrige et on redeploie" en fin de demonstration.
+    <include file="changelog/v2.0.1.xml" relativeToChangelogFile="false"/>
+    -->
+
+</databaseChangeLog>

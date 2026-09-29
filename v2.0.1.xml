@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!--
+        Version 2.0.1 - Correctif du bareme.
+        OPTIONNEL : a activer dans db.changelog-master.xml uniquement si tu
+        veux terminer la demonstration par "on corrige, puis on redeploie".
+    -->
+
+    <changeSet id="2.0.1-1-correction-bareme" author="amabrouk">
+        <comment>Correction : les taux etaient saisis en pourcentage</comment>
+        <update tableName="TARIF_ZONE">
+            <column name="TAUX" valueNumeric="0.0500"/>
+            <where>ZONE_CODE = 'A'</where>
+        </update>
+        <update tableName="TARIF_ZONE">
+            <column name="TAUX" valueNumeric="0.0800"/>
+            <where>ZONE_CODE = 'B'</where>
+        </update>
+        <update tableName="TARIF_ZONE">
+            <column name="TAUX" valueNumeric="0.1500"/>
+            <where>ZONE_CODE = 'C'</where>
+        </update>
+        <rollback>
+            <update tableName="TARIF_ZONE"><column name="TAUX" valueNumeric="0.5000"/><where>ZONE_CODE = 'A'</where></update>
+            <update tableName="TARIF_ZONE"><column name="TAUX" valueNumeric="0.8000"/><where>ZONE_CODE = 'B'</where></update>
+            <update tableName="TARIF_ZONE"><column name="TAUX" valueNumeric="1.5000"/><where>ZONE_CODE = 'C'</where></update>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2.0.1-2-tag" author="amabrouk">
+        <tagDatabase tag="v2.0.1"/>
+    </changeSet>
+
+</databaseChangeLog>

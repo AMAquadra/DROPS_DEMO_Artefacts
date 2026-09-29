@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="1.0.0-1-table-expedition" author="amabrouk">
+        <comment>Socle : table des expeditions</comment>
+        <createTable tableName="EXPEDITION">
+            <column name="ID" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="NUM_COLIS"  type="VARCHAR(20)"><constraints nullable="false"/></column>
+            <column name="NOM_CLIENT" type="VARCHAR(80)"><constraints nullable="false"/></column>
+            <column name="VILLE"      type="VARCHAR(60)"><constraints nullable="false"/></column>
+            <column name="ZONE_CODE"  type="VARCHAR(5)"><constraints nullable="false"/></column>
+            <column name="STATUT"     type="VARCHAR(20)"><constraints nullable="false"/></column>
+            <column name="MONTANT"    type="DECIMAL(10,2)"><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.0-2-donnees-expedition" author="amabrouk">
+        <comment>Jeu de donnees de demonstration</comment>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0114"/><column name="NOM_CLIENT" value="Carrefour Market"/><column name="VILLE" value="Lille"/><column name="ZONE_CODE" value="B"/><column name="STATUT" value="EN TRANSIT"/><column name="MONTANT" valueNumeric="1250.00"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0115"/><column name="NOM_CLIENT" value="Pharmacie du Centre"/><column name="VILLE" value="Paris 11e"/><column name="ZONE_CODE" value="A"/><column name="STATUT" value="LIVREE"/><column name="MONTANT" valueNumeric="340.50"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0116"/><column name="NOM_CLIENT" value="Groupe Dubreuil"/><column name="VILLE" value="Nantes"/><column name="ZONE_CODE" value="B"/><column name="STATUT" value="EN PREPARATION"/><column name="MONTANT" valueNumeric="880.00"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0117"/><column name="NOM_CLIENT" value="Bricodepot"/><column name="VILLE" value="Toulouse"/><column name="ZONE_CODE" value="B"/><column name="STATUT" value="EN TRANSIT"/><column name="MONTANT" valueNumeric="2410.75"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0118"/><column name="NOM_CLIENT" value="Delhaize Belgique"/><column name="VILLE" value="Bruxelles"/><column name="ZONE_CODE" value="C"/><column name="STATUT" value="EN TRANSIT"/><column name="MONTANT" valueNumeric="1590.00"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0119"/><column name="NOM_CLIENT" value="Clinique Saint-Jean"/><column name="VILLE" value="Paris 15e"/><column name="ZONE_CODE" value="A"/><column name="STATUT" value="LIVREE"/><column name="MONTANT" valueNumeric="615.20"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0120"/><column name="NOM_CLIENT" value="Sodiaal Union"/><column name="VILLE" value="Rennes"/><column name="ZONE_CODE" value="B"/><column name="STATUT" value="RETARDEE"/><column name="MONTANT" valueNumeric="3120.00"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0121"/><column name="NOM_CLIENT" value="Migros Geneve"/><column name="VILLE" value="Geneve"/><column name="ZONE_CODE" value="C"/><column name="STATUT" value="EN PREPARATION"/><column name="MONTANT" valueNumeric="2050.00"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0122"/><column name="NOM_CLIENT" value="Mairie de Boulogne"/><column name="VILLE" value="Boulogne-Billancourt"/><column name="ZONE_CODE" value="A"/><column name="STATUT" value="LIVREE"/><column name="MONTANT" valueNumeric="428.90"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0123"/><column name="NOM_CLIENT" value="Leroy Merlin"/><column name="VILLE" value="Lyon"/><column name="ZONE_CODE" value="B"/><column name="STATUT" value="EN TRANSIT"/><column name="MONTANT" valueNumeric="1735.40"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0124"/><column name="NOM_CLIENT" value="Cora Luxembourg"/><column name="VILLE" value="Luxembourg"/><column name="ZONE_CODE" value="C"/><column name="STATUT" value="LIVREE"/><column name="MONTANT" valueNumeric="960.00"/></insert>
+        <insert tableName="EXPEDITION"><column name="NUM_COLIS" value="COL-2026-0125"/><column name="NOM_CLIENT" value="Hopital Necker"/><column name="VILLE" value="Paris 15e"/><column name="ZONE_CODE" value="A"/><column name="STATUT" value="EN PREPARATION"/><column name="MONTANT" valueNumeric="1180.00"/></insert>
+        <rollback>
+            <delete tableName="EXPEDITION"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.0.0-3-tag" author="amabrouk">
+        <tagDatabase tag="v1.0.0"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!--
+        Version 2.0.0 - Frais de livraison par zone geographique.
+
+        ATTENTION : le bareme livre ici est VOLONTAIREMENT errone.
+        Les taux sont saisis en pourcentage (5, 8, 15) au lieu du
+        coefficient attendu par l'API (0.05, 0.08, 0.15). Les frais
+        sont donc multiplies par 10 en production.
+
+        C'est l'anomalie que la demonstration met en evidence : elle est
+        passee en recette parce que le jeu de donnees de test n'utilisait
+        pas les memes zones.
+    -->
+
+    <changeSet id="2.0.0-1-tarif-zone" author="amabrouk">
+        <comment>Bareme des frais de livraison par zone</comment>
+
+        <createTable tableName="TARIF_ZONE">
+            <column name="ZONE_CODE" type="VARCHAR(5)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="LIBELLE" type="VARCHAR(60)"><constraints nullable="false"/></column>
+            <column name="TAUX"    type="DECIMAL(6,4)"><constraints nullable="false"/></column>
+        </createTable>
+
+        <insert tableName="TARIF_ZONE">
+            <column name="ZONE_CODE" value="A"/>
+            <column name="LIBELLE"   value="Ile-de-France"/>
+            <column name="TAUX"      valueNumeric="0.5000"/>
+        </insert>
+        <insert tableName="TARIF_ZONE">
+            <column name="ZONE_CODE" value="B"/>
+            <column name="LIBELLE"   value="France metropolitaine"/>
+            <column name="TAUX"      valueNumeric="0.8000"/>
+        </insert>
+        <insert tableName="TARIF_ZONE">
+            <column name="ZONE_CODE" value="C"/>
+            <column name="LIBELLE"   value="International"/>
+            <column name="TAUX"      valueNumeric="1.5000"/>
+        </insert>
+
+        <rollback>
+            <dropTable tableName="TARIF_ZONE"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2.0.0-2-tag" author="amabrouk">
+        <tagDatabase tag="v2.0.0"/>
+    </changeSet>
+
+</databaseChangeLog>
