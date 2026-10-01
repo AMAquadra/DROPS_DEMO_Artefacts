@@ -5,7 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
 
+    <!-- Tous les fichiers sont dans le meme repertoire que ce master. -->
+
+    <!-- Socle applicatif -->
     <include file="v1.0.0.xml" relativeToChangelogFile="true"/>
+
+    <!-- Frais de livraison par zone -->
     <include file="v2.0.0.xml" relativeToChangelogFile="true"/>
+
+    <!-- Correctif du bareme - a activer seulement pour la variante
+         "on corrige et on redeploie" en fin de demonstration.
+    <include file="v2.0.1.xml" relativeToChangelogFile="true"/>
+    -->
 
 </databaseChangeLog>
